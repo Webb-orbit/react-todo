@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import serv from '../appwrite/conf'
 import { Postcard} from '../compo'
+
 function Allposts() {
   const [posts, setposts]=useState([])
   useEffect(()=>{
@@ -9,7 +10,8 @@ function Allposts() {
     }
   )
   },[])
-  return (
+  const windowwidth = window.innerWidth
+  if (windowwidth >= 600)return (
     <div>
         <div className=' flex flex-wrap'>
           {posts.map((e)=>(
@@ -18,10 +20,23 @@ function Allposts() {
               {console.log('>>>>>>>>>>>',e)}
             </div>
           ))}
-
         </div>
     </div>
   )
+
+  if (windowwidth <= 600)return (
+    <div>
+    <div className=' flex flex-wrap'>
+      {posts.map((e)=>(
+        <div key={e.$id} className=' p-2 w-full'>
+          <Postcard post={{...e}}/>
+          {console.log('>>>>>>>>>>>',e)}
+        </div>
+      ))}
+    </div>
+</div>
+  )
+
 }
 
 export default Allposts

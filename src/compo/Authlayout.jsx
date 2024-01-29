@@ -17,7 +17,7 @@ const Authlayout = ({child, authencation=true}) => {
         setload(false)
     },[authencation, status, navigat])
 
-  return load ? <p>loading....</p> : <>{child}</>
+  return load ? <p>Loading</p> : <>{child}</>
 }
 
 export default Authlayout

@@ -12,7 +12,7 @@ function Home() {
         })
     },[])
 
-    if (post.length === 0) return <p>log in to red posts</p>
+    if (post.length === 0) return <p className=' text-center hover:font-bold mt-8'>NO POSTS / LOGIN TO SEE POSTS</p>
         
      return(
                 <div className='flex flex-wrap'>

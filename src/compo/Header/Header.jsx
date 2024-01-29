@@ -1,4 +1,4 @@
-import {Logoutbtn, Logo} from "../index"
+import {Logo} from "../index"
 import {Link} from "react-router-dom"
 import {useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
@@ -48,15 +48,11 @@ const Header = () => {
               <li key={e.name}>
                 <button
                 onClick={()=>navigate(e.slug)} 
+                className=" text-white text-[0.9rem] capitalize"
                 >{e.name}</button>
               </li>
 
             ) : null
-            )}
-            {authstatus && (
-              <li>
-                <Logoutbtn/>
-              </li>
             )}
           </ul>
         </nav>

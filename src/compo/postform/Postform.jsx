@@ -4,7 +4,6 @@ import {Select, RTE, Input, Button} from "../index"
 import serv from "../../appwrite/conf";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-
 export default function PostForm({ post }) {
     // console.log("edit" post.title)
     const { register, handleSubmit, watch, setValue, control, getValues } = useForm({
@@ -18,7 +17,7 @@ export default function PostForm({ post }) {
 
     const navigate = useNavigate();
     const userdata = useSelector((state) => state.userdata);
-console.log('>>>>>>>>>>>userdata',userdata, userdata.userdata.$id )
+    console.log('>>>>>>>>>>>store-userdata', userdata )
     const submit = async (data) => {
         if (post) {
             const file = data.image[0] ? await serv.uploadfile(data.image[0]) : null;
@@ -33,6 +32,7 @@ console.log('>>>>>>>>>>>userdata',userdata, userdata.userdata.$id )
             });
 
             if (dbPost) {
+                // window.location.reload()
                 navigate(`/post/${dbPost.$id}`);
             }
         } else {
@@ -41,7 +41,7 @@ console.log('>>>>>>>>>>>userdata',userdata, userdata.userdata.$id )
             if (file) {
                 const fileId = file.$id;
                 data.photoimg = fileId;
-                const dbPost = await serv.createpost({ ...data, userid:userdata.userdata.$id  });
+                const dbPost = await serv.createpost({ ...data, userid:userdata.userdata.$id});
 
                 if (dbPost) {
                     navigate(`/post/${dbPost.$id}`);
