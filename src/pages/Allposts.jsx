@@ -17,7 +17,6 @@ function Allposts() {
           {posts.map((e)=>(
             <div key={e.$id} className=' p-2 w-1/4'>
               <Postcard post={{...e}}/>
-              {console.log('>>>>>>>>>>>',e)}
             </div>
           ))}
         </div>
@@ -30,7 +29,6 @@ function Allposts() {
       {posts.map((e)=>(
         <div key={e.$id} className=' p-2 w-full'>
           <Postcard post={{...e}}/>
-          {console.log('>>>>>>>>>>>',e)}
         </div>
       ))}
     </div>
