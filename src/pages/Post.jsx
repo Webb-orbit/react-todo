@@ -11,8 +11,8 @@ export default function Post() {
     const navigate = useNavigate();
 
     const userData = useSelector((state) => state.userdata);
-
-    const isAuthor = post && userData ? post.userId === userData.$id : false;
+    
+    const isAuthor = post && userData ? post.userid == userData.userdata.$id : false;
 
     useEffect(() => {
         if (slug) {
@@ -33,12 +33,12 @@ export default function Post() {
     };
 
     return post ? (
-        <div className="py-8">
-                <div className="w-full flex justify-center mb-4 relative border rounded-xl p-2">
+        <div className="py-8 w-[90vw] mx-auto">
+                <div className="w-full flex justify-center mb-4 relative rounded-sm p-2">
                     <img
                         src={serv.getfilepreview(post.photoimg)}
                         alt={post.title}
-                        className="rounded-xl w-[50%]"
+                        className="rounded-xl w-[80%]"
                     />
 
                     {isAuthor && (
@@ -53,9 +53,10 @@ export default function Post() {
                     )}
                 </div>
                 <div className="w-full mb-6">
+                <p className=' w-[70vw] text-right font-semibold text-white text-[0.6rem]'>{post.writer}</p>
                     <h1 className="text-2xl font-bold text-center capitalize">{post.title}</h1>
                 </div>
-                <div className="browser-css w-[80vw] mx-auto">
+                <div className="browser-css w-[80vw] mx-auto text-[0.9rem]">
                     {parse(post.content)}
                     </div>
         </div>

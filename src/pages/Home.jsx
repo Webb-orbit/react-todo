@@ -12,12 +12,25 @@ function Home() {
         })
     },[])
 
-    if (post.length === 0) return <p>log in to red posts</p>
+    const widthofwindow = window.innerWidth
+
+    if (navigator.onLine == false) return <p className=' text-center hover:font-bold mt-8'>OFLINE</p>
+    if (post.length === 0) return <p className=' text-center hover:font-bold mt-8'>NO POSTS / LOGIN TO SEE POSTS</p>
         
-     return(
+    if (widthofwindow >= 600) return(
                 <div className='flex flex-wrap'>
                     {post.map((e)=>(
                         <div key={e.$id} className='p-2  w-1/4'>
+                            <Postcard post={{...e}}/>
+                        </div>
+                    ))}
+                </div>
+    )
+
+    if (widthofwindow <= 600) return(
+                <div className='flex flex-wrap'>
+                    {post.map((e)=>(
+                        <div key={e.$id} className='p-2  w-1/2'>
                             <Postcard post={{...e}}/>
                         </div>
                     ))}

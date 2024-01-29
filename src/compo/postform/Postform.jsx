@@ -4,7 +4,6 @@ import {Select, RTE, Input, Button} from "../index"
 import serv from "../../appwrite/conf";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-
 export default function PostForm({ post }) {
     // console.log("edit" post.title)
     const { register, handleSubmit, watch, setValue, control, getValues } = useForm({
@@ -18,8 +17,9 @@ export default function PostForm({ post }) {
 
     const navigate = useNavigate();
     const userdata = useSelector((state) => state.userdata);
-console.log('>>>>>>>>>>>userdata',userdata, userdata.userdata.$id )
+    console.log('>>>>>>>>>>>store-userdata', userdata )
     const submit = async (data) => {
+        console.log('>>>>>>>>>>>postformdat', data)
         if (post) {
             const file = data.image[0] ? await serv.uploadfile(data.image[0]) : null;
 
@@ -33,6 +33,7 @@ console.log('>>>>>>>>>>>userdata',userdata, userdata.userdata.$id )
             });
 
             if (dbPost) {
+                // window.location.reload()
                 navigate(`/post/${dbPost.$id}`);
             }
         } else {
@@ -41,7 +42,7 @@ console.log('>>>>>>>>>>>userdata',userdata, userdata.userdata.$id )
             if (file) {
                 const fileId = file.$id;
                 data.photoimg = fileId;
-                const dbPost = await serv.createpost({ ...data, userid:userdata.userdata.$id  });
+                const dbPost = await serv.createpost({ ...data, userid:userdata.userdata.$id, writer: userdata.userdata.name});
 
                 if (dbPost) {
                     navigate(`/post/${dbPost.$id}`);
@@ -70,20 +71,21 @@ console.log('>>>>>>>>>>>userdata',userdata, userdata.userdata.$id )
 
         return () => subscription.unsubscribe();
     }, [watch, slugTransform, setValue]);
+const winwidth = window.innerWidth
 
-    return (
+if (winwidth >= 600) return (
         <form onSubmit={handleSubmit(submit)} className="flex flex-wrap">
             <div className="w-2/3 px-2">
                 <Input
                     label="Title :"
                     placeholder="Title"
-                    className="mb-4"
+                    className="border-gray-400 border-2 my-2 placeholder-stone-400 placeholder:capitalize placeholder:text-[0.8rem]"
                     {...register("title", { required: true })}
                 />
                 <Input
                     label="Slug :"
-                    placeholder="Slug"
-                    className="mb-4"
+                    placeholder="url"
+                    className="border-gray-400 border-2 my-2 placeholder-stone-400 placeholder:capitalize placeholder:text-[0.8rem]"
                     {...register("slug", { required: true })}
                     onInput={(e) => {
                         setValue("slug", slugTransform(e.currentTarget.value), { shouldValidate: true });
@@ -119,5 +121,55 @@ console.log('>>>>>>>>>>>userdata',userdata, userdata.userdata.$id )
                 </Button>
             </div>
         </form>
-    );
+    )
+    if (winwidth <= 600) return (
+        <form onSubmit={handleSubmit(submit)} className="flex flex-wrap">
+        <div className="w-full px-2">
+            <Input
+                label="Title :"
+                placeholder="Title"
+                className="border-gray-400 border-2 my-2 placeholder-stone-400 placeholder:capitalize placeholder:text-[0.8rem]"
+                {...register("title", { required: true })}
+            />
+            <Input
+                label="Slug :"
+                placeholder="url"
+                readOnly
+                className="border-gray-400 border-2 my-2 placeholder-stone-400 placeholder:capitalize placeholder:text-[0.8rem]"
+                {...register("slug", { required: true })}
+                onInput={(e) => {
+                    setValue("slug", slugTransform(e.currentTarget.value), { shouldValidate: true });
+                }}
+            />
+            <RTE label="Content :" name="content" control={control} defaultValue={getValues("content")} />
+        <div className="w-full px-2 flex flex-col items-center justify-center mt-7">
+            <Input
+                label="Featured Image :"
+                type="file"
+                className="mb-4"
+                accept="image/png, image/jpg, image/jpeg, image/gif"
+                {...register("image", { required: !post })}
+            />
+            {post && (
+                <div className="w-full mb-4">
+                    <img
+                        src={serv.getfilepreview(post.photoimg)}
+                        alt={post.title}
+                        className="rounded-lg"
+                    />
+                </div>
+            )}
+            <Select
+                opctions={["active", "inactive"]}
+                label="Status"
+                className="mb-4  w-[15rem]"
+                {...register("status", { required: true })}
+                />
+            <Button type="submit" bgcolor={post ? "bg-green-500" : undefined} className="w-full mb-6" child={post ? "Update" : "Submit"}>
+                
+            </Button>
+        </div>
+                </div>
+    </form>
+    )
 }

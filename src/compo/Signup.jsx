@@ -31,23 +31,24 @@ const Signup = () => {
     }
   return (
     <>
-        <h2>signup</h2>
-    <div>
-        <p>you have an accout <Link to="/login" className=' text-blue-400'>login</Link></p>
-         <form onSubmit={handleSubmit(singupnow)}>
+    <div className='flex items-center justify-center flex-col w-full'>
+        <h2 className=' text-center font-semibold text-[2rem] capitalize'>signup</h2>
+        <p className=' capitalize text-center text-[1.1rem]'>you have an accout <Link to="/login" className=' text-blue-400 font-semibold'>login</Link></p>
+         <form onSubmit={handleSubmit(singupnow)} className=' p-8'>
             <Input
-            label="your email"
             type="email"
+
             placeholder="enter email"
+            className=" border-gray-400 border-2 my-2 placeholder-stone-400 placeholder:capitalize placeholder:text-[0.8rem]"
             {...register("email",{
                 required: true
             })}
             />
 
             <Input
-            label="your password"
             type="password"
             placeholder="enter your password"
+            className=" border-gray-400 border-2 my-2 placeholder-stone-400 placeholder:capitalize placeholder:text-[0.8rem]"
             {...register("password",{
                 required: true,
                 minLength: 5,
@@ -55,15 +56,16 @@ const Signup = () => {
             })}
             />
                         <Input
-            label="your full name"
             type="text"
+            autoComplete='off'
             placeholder="enter your name"
+            className=" border-gray-400 border-2 my-2 placeholder-stone-400 placeholder:capitalize placeholder:text-[0.8rem]"
             {...register("name",{
                 required: true,
                 maxLength: 20
             })}
             />
-            <Button child="sign up now" type='submit'/>
+            <Button className="w-full mt-3 capitalize" child="sign up now" type='submit'/>
          </form>
     </div>
             </>

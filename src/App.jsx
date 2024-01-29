@@ -5,8 +5,7 @@ import authserv from "./appwrite/auth"
 import './App.css'
 import {Header, Footer} from "./compo/index"
 import { Outlet } from "react-router-dom"
-
-function App() {
+export default function App() {
   const [loading, setloading] = useState(true)
   const disp = useDispatch()
 
@@ -31,7 +30,7 @@ function App() {
     </main>
     <Footer/>
     </>
-  ) : (<>nono</>)
+  ) : (<p>loading app</p>)
 }
 
-export default App
+

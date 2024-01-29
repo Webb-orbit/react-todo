@@ -12,6 +12,7 @@ import RTE from "./Rte";
 import Select from "./Select";
 import Postform from "./postform/Postform"
 import Authlayout from "./Authlayout";
+import Loading from "./Loading";
 export{
    Header,
    Footer,
@@ -21,10 +22,11 @@ export{
    Logoutbtn,
    Button,
    Login,
+   Authlayout,
+   Postform,
    Signup,
+   Loading,
    RTE,
    Select,
    Input,
-   Postform,
-   Authlayout
  }

@@ -29,24 +29,23 @@ const Login = () => {
     }
   }
   return (
-    <div>
-      <h2>log in now</h2>
-      <p>do not have account: 
-      <Link to="/signup">signup</Link>
+    <div  className='flex items-center justify-center flex-col w-full'>
+      <h2  className=' text-center font-semibold text-[2rem] capitalize'>log in now</h2>
+      <p  className=' capitalize text-center text-[1.1rem]'>do not have account <Link  className=' text-blue-400 font-semibold' to="/signup">signup</Link>
       </p>
       <form onSubmit={handleSubmit(login)} className=' mt-8'>
         <Input 
-        lable="email"
         placeholder="enter email"
         type="email"
+        className=" border-gray-400 border-2 my-2 placeholder-stone-400 placeholder:capitalize placeholder:text-[0.8rem]"
         {...register("email",{
         required: true
         })}
         />
         <Input 
-        lable="password"
         type="password"
-        placeholder="enter pass"
+        className=" border-gray-400 border-2 my-2 placeholder-stone-400 placeholder:capitalize placeholder:text-[0.8rem]"
+        placeholder="enter password"
         {...register("password", {
           required: true,
           maxLength: 10,
@@ -54,7 +53,8 @@ const Login = () => {
         })}
         />
         <Button
-        child="login btn"
+        child="login"
+        className="w-full mt-3 capitalize"       
         type='submit'
         />
 
