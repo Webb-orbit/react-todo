@@ -17,9 +17,7 @@ export default function PostForm({ post }) {
 
     const navigate = useNavigate();
     const userdata = useSelector((state) => state.userdata);
-    console.log('>>>>>>>>>>>store-userdata', userdata )
     const submit = async (data) => {
-        console.log('>>>>>>>>>>>postformdat', data)
         if (post) {
             const file = data.image[0] ? await serv.uploadfile(data.image[0]) : null;
 
