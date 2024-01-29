@@ -8,7 +8,6 @@ const Logoutbtn = () => {
         authserv.logout()
         .then(()=>{
             disp(logout())
-          location.reload()
         })
     }
   return (
