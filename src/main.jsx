@@ -74,5 +74,5 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <RouterProvider router={rout}/>
     <SpeedInsights/>
 
-  </Provider>,
+  </Provider>
 )
