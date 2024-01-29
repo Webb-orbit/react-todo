@@ -42,7 +42,7 @@ export default function PostForm({ post }) {
             if (file) {
                 const fileId = file.$id;
                 data.photoimg = fileId;
-                const dbPost = await serv.createpost({ ...data, userid:userdata.userdata.$id, writer: userdata.userdata.name});
+                const dbPost = await serv.createpost({ ...data, userid:userdata.userdata.$id  });
 
                 if (dbPost) {
                     navigate(`/post/${dbPost.$id}`);
