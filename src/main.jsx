@@ -1,7 +1,6 @@
 import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 import './index.css'
-import { SpeedInsights } from '@vercel/speed-insights/next';
 
 import { Provider } from 'react-redux'
 import store from './store/store.js'
@@ -72,7 +71,5 @@ const rout= createBrowserRouter([
 ReactDOM.createRoot(document.getElementById('root')).render(
   <Provider store={store}>
     <RouterProvider router={rout}/>
-    <SpeedInsights/>
-
   </Provider>
 )
