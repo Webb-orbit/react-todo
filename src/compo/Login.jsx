@@ -5,7 +5,7 @@ import {Link, useNavigate} from "react-router-dom"
 import {useDispatch} from "react-redux"
 import authserv from '../appwrite/auth'
 import {Input, Button} from "./index"
-
+import Phonelogin from './Phonelogin'
 const Login = () => {
   const navigate = useNavigate()
   const disp = useDispatch()
@@ -25,14 +25,17 @@ const Login = () => {
       
     } catch (error) {
       seterror(error)
-      console.log('>>>>>>>>>>>login', error)
     }
   }
+  
+  if (navigator.onLine == false) return <p className=' text-center hover:font-bold mt-8'>OFFLINE</p>
   return (
+    <>
     <div  className='flex items-center justify-center flex-col w-full'>
       <h2  className=' text-center font-semibold text-[2rem] capitalize'>log in now</h2>
       <p  className=' capitalize text-center text-[1.1rem]'>do not have account <Link  className=' text-blue-400 font-semibold' to="/signup">signup</Link>
       </p>
+      <p className=' text-red-300 text-[0.7rem] '>{error? error.response.message :null}</p>
       <form onSubmit={handleSubmit(login)} className=' mt-8'>
         <Input 
         placeholder="enter email"
@@ -48,8 +51,7 @@ const Login = () => {
         placeholder="enter password"
         {...register("password", {
           required: true,
-          maxLength: 10,
-          minLength: 5,
+          minLength: 3,
         })}
         />
         <Button
@@ -57,9 +59,15 @@ const Login = () => {
         className="w-full mt-3 capitalize"       
         type='submit'
         />
-
       </form>
+    <b className=' text-center w-full'>or</b>
     </div>
+        <div className=' flex items-center justify-center my-12 mb-14'>
+
+        <Phonelogin/>
+    
+        </div>
+    </>
   )
 }
 

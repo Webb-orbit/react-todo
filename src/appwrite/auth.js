@@ -28,6 +28,16 @@ export class Authserv{
     async logout(){
        return await this.account.deleteSessions();
     }
+
+    async phonesignup(number){
+        return await this.account.createPhoneSession(ID.unique(),number)
+    }
+
+    async phonelogin(phoneid,code){
+        return  await this.account.updatePhoneSession(phoneid,code)
+        
+    }
+    
 }
 
 const authserv = new Authserv()

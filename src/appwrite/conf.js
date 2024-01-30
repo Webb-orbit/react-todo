@@ -15,7 +15,7 @@ export class service{
     }
 
     async createpost({title,slug,content,photoimg,status, userid, writer}){
-        console.log(title,slug,content,photoimg,status, userid,writer,"database==========");
+        console.log(title,slug,content,photoimg,status, userid,writer,"database===")
         return await this.database.createDocument(config.databaseid, config.collectionid, slug, {title, content, photoimg, status, userid, writer})
     }
 

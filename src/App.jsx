@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 import { login, logout } from "./store/authslice"
 import authserv from "./appwrite/auth"
 import './App.css'
-import {Header, Footer} from "./compo/index"
+import {Header, Footer, Loading} from "./compo/index"
 import { Outlet } from "react-router-dom"
 export default function App() {
   const [loading, setloading] = useState(true)
@@ -25,12 +25,12 @@ export default function App() {
   return !loading ? (
     <>
     <Header/>
-    <main className=" min-h-[80vh]">
+    <main className=" min-h-[90vh]">
       <Outlet/>
     </main>
     <Footer/>
     </>
-  ) : (<p>loading app</p>)
+  ) : (<Loading/>)
 }
 
 

@@ -11,6 +11,7 @@ import Addpost from './pages/Addpost.jsx'
 import Editpost from './pages/Editpost.jsx'
 import Post from './pages/Post.jsx'
 import Home from './pages/Home.jsx'
+import Phonesignpage from './pages/Phonesignpage.jsx'
 const rout= createBrowserRouter([
   {
     path: "/",
@@ -48,6 +49,14 @@ const rout= createBrowserRouter([
         path: "/addpost",
         element:(
           <Authlayout authencation child={<Addpost/>}>
+            
+          </Authlayout>
+        ),
+      },
+      {
+        path: "/phonesignup",
+        element:(
+          <Authlayout authencation={false} child={<Phonesignpage/>}>
             
           </Authlayout>
         ),

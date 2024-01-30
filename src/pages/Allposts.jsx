@@ -10,6 +10,7 @@ function Allposts() {
     }
   )
   },[])
+
   const windowwidth = window.innerWidth
   if (windowwidth >= 600)return (
     <div>
@@ -27,7 +28,7 @@ function Allposts() {
     <div>
     <div className=' flex flex-wrap'>
       {posts.map((e)=>(
-        <div key={e.$id} className=' p-2 w-full'>
+        <div key={e.$id} className=' p-1 w-1/2'>
           <Postcard post={{...e}}/>
         </div>
       ))}

@@ -13,6 +13,7 @@ import Select from "./Select";
 import Postform from "./postform/Postform"
 import Authlayout from "./Authlayout";
 import Loading from "./Loading";
+import Phonsignup from "./Phonsignup";
 export{
    Header,
    Footer,
@@ -27,6 +28,7 @@ export{
    Signup,
    Loading,
    RTE,
+   Phonsignup,
    Select,
    Input,
  }

@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const track = {
     status: false,
     userdata: null,
+    phoneuserid: null,
 }
 
 const authslice = createSlice({
@@ -16,9 +17,14 @@ const authslice = createSlice({
         logout: (state)=>{
             state.status = false
             state.userdata = null
+        },
+
+        phonelog: (state,action)=>{
+            state.phoneuserid = action.payload
         }
+
     }
 })
 
-export const {login, logout} = authslice.actions;
+export const {login, logout, phonelog} = authslice.actions;
 export default authslice.reducer;

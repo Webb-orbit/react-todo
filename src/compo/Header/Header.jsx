@@ -36,7 +36,7 @@ const Header = () => {
   return (
     <>
     <header className=" bg-cyan-500">
-        <nav className="  h-14 w-full flex justify-between items-center px-5">
+        <nav className=" h-14 w-full flex justify-between items-center px-5">
           <div>
             <Link to="/">
               <Logo/>
