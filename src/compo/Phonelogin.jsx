@@ -17,9 +17,7 @@ const Phonelogin = () => {
 try {
   seterr("")
   const authsign = await authserv.phonesignup(data.num)
-  console.log('>>>>>>>>>>authsign>', authsign)
   disp(phonelog(String(authsign.userId)))
-  console.log("phuseridsli",phuseridsli)
   navi("/phonesignup")
 
 } catch (error) {

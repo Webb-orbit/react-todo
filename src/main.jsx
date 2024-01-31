@@ -1,7 +1,7 @@
 import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 import './index.css'
-
+import "boxicons"
 import { Provider } from 'react-redux'
 import store from './store/store.js'
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
@@ -12,6 +12,7 @@ import Editpost from './pages/Editpost.jsx'
 import Post from './pages/Post.jsx'
 import Home from './pages/Home.jsx'
 import Phonesignpage from './pages/Phonesignpage.jsx'
+import Profilepage from "./pages/Frofilepage.jsx"
 const rout= createBrowserRouter([
   {
     path: "/",
@@ -65,6 +66,14 @@ const rout= createBrowserRouter([
         path: "/edit-post/:slug",
         element:(
           <Authlayout authencation child={<Editpost/>}>
+            
+          </Authlayout>
+        ),
+      },
+      {
+        path: "/frofile",
+        element:(
+          <Authlayout authencation child={<Profilepage/>}>
             
           </Authlayout>
         ),

@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import serv from '../appwrite/conf'
-import { Postcard, Button } from '../compo'
+import { Postcard, Button, Loading } from '../compo'
 import { Link } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 function Home() {
+    const load = useSelector(state=> state.status)
+    console.log('>>>>>>>>>>>load', load)
     const [post, setpost] = useState([])
     useEffect(()=>{
         serv.getallposts()
@@ -17,12 +20,6 @@ function Home() {
     const widthofwindow = window.innerWidth
 
     if (navigator.onLine == false) return <p className=' text-center hover:font-bold mt-8'>OFFLINE</p>
-
-    if (post.length === 0) return (<>
-    <p className=' text-center hover:font-bold mt-8'>LOGIN TO SEE POSTS</p>
-    <Link to={"/login"} className=' w-full flex mt-7 justify-center'><Button child="login" className=' px-6'/> </Link>
-    </>
-    )
         
     if (widthofwindow >= 600) return(
                 <div className='flex flex-wrap'>

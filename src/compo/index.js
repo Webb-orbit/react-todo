@@ -14,6 +14,7 @@ import Postform from "./postform/Postform"
 import Authlayout from "./Authlayout";
 import Loading from "./Loading";
 import Phonsignup from "./Phonsignup";
+import Profile from "./Frofile.jsx"
 export{
    Header,
    Footer,
@@ -29,6 +30,7 @@ export{
    Loading,
    RTE,
    Phonsignup,
+   Profile,
    Select,
    Input,
  }

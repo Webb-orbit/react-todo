@@ -2,7 +2,7 @@ import {Logo} from "../index"
 import {Link} from "react-router-dom"
 import {useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
-
+import logo from "../../assets/frologo.png"
 const Header = () => {
   const authstatus = useSelector(state => state.status)
   const navigate = useNavigate()
@@ -31,6 +31,13 @@ const Header = () => {
       name: "addpost",
       slug: "/addpost",
       active: authstatus
+    },
+  ]
+  const icons =[
+    {
+      filepath: logo,
+      slug: "/frofile",
+      active: authstatus
     }
   ]
   return (
@@ -42,7 +49,8 @@ const Header = () => {
               <Logo/>
             </Link>
           </div>
-          <ul className=" flex gap-3">
+
+          <ul className="flex gap-3 items-center justify-between">
             {navitems.map((e)=> 
             e.active? (
               <li key={e.name}>
@@ -51,11 +59,23 @@ const Header = () => {
                 className=" text-white text-[0.9rem] capitalize"
                 >{e.name}</button>
               </li>
-
             ) : null
             )}
+                    <div>
+          {icons.map((e)=>(
+            e.active?(
+              <div key={e.filepath}>
+            
+              <img onClick={()=> navigate(e.slug)} src={e.filepath} className=" w-[1.4rem] rounded-full bg-black p-1"/>
+            
+              </div>
+            ):null
+          ))}
+          </div>
           </ul>
+          
         </nav>
+
     </header>
     </>
   )
