@@ -2,8 +2,19 @@ import {Logo} from "../index"
 import {Link} from "react-router-dom"
 import {useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
-import logo from "../../assets/frologo.png"
+import authserv from "../../appwrite/auth"
+import { useEffect, useState } from "react"
 const Header = () => {
+  const [logos, setlogos] = useState("")
+  const lo = async()=>{
+    let l = await authserv.logo()
+    setlogos(l.href)
+    console.log('>>>>>>>>>>>', l)
+  }
+  useEffect(()=>{
+    lo()
+  },[])
+
   const authstatus = useSelector(state => state.status)
   const navigate = useNavigate()
   const navitems =[
@@ -35,7 +46,7 @@ const Header = () => {
   ]
   const icons =[
     {
-      filepath: logo,
+      filepath: logos,
       slug: "/frofile",
       active: authstatus
     }
@@ -66,7 +77,7 @@ const Header = () => {
             e.active?(
               <div key={e.filepath}>
             
-              <img onClick={()=> navigate(e.slug)} src={e.filepath} className=" w-[1.4rem] rounded-full bg-black p-1"/>
+              <img onClick={()=> navigate(e.slug)} src={e.filepath} className=" w-[1.5rem] rounded-full bg-black"/>
             
               </div>
             ):null

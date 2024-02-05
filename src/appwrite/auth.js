@@ -1,12 +1,14 @@
 import config from "../config/config";
-import {Client, Account, ID} from "appwrite"
+import {Client, Account, ID, Avatars} from "appwrite"
 
 export class Authserv{
     Client = new Client();
     account;
+    avatars;
     constructor(){
         this.Client.setEndpoint(config.appwiteurl).setProject(config.projectid);    
         this.account = new Account(this.Client);
+        this.avatars = new Avatars(this.Client);
     }
     
     async login({email,password}){
@@ -36,6 +38,10 @@ export class Authserv{
     async phonelogin(phoneid,code){
         return  await this.account.updatePhoneSession(phoneid,code)
         
+    }
+
+    async logo(){
+        return await this.avatars.getInitials()
     }
     
 }

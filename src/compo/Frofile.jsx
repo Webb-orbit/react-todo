@@ -3,6 +3,7 @@ import Logoutbtn from './Header/Logoutbtn';
 const Frofile = () => {
     const frofiledata = useSelector(state=> state.userdata.userdata)
 
+
   return (
     <>
 <div className="card container m-8 w-[60%] mx-auto" >
