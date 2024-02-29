@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import serv from "../appwrite/conf";
 import {Button} from "../compo"
@@ -17,6 +17,7 @@ export default function Post() {
     useEffect(() => {
         if (slug) {
             serv.getpost(slug).then((post) => {
+                console.log("getpost setpost",post);
                 if (post) setPost(post);
                 else navigate("/");
             });

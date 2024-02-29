@@ -1,4 +1,3 @@
-import React from 'react'
 import loadgif from "../assets/load.gif"
 export default function Loading() {
   return (
